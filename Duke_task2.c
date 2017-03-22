@@ -10,6 +10,7 @@
  */
 #include <stdio.h>		/* For Standard I/O */
 #include <stdlib.h>
+#include <time.h>
 #define TOTAL 10
 /* Function Prototypes */
 void MaxMin(int numvals, int vals[],int* min, int* max);
@@ -19,6 +20,7 @@ int main(int argc, char *argv[])
 	int value[TOTAL];
 	int min, max;
 	int numvals=0;
+	srand(time(NULL));
 	printf("Generating random list\n");
 	printf("This list is: \n");
 	for(int i = 0; i < TOTAL; i++)
@@ -36,16 +38,15 @@ int main(int argc, char *argv[])
 /* Function Defenitions */
 void MaxMin(int numvals, int vals[],int* min, int* max)
 {
-	for(int i = 0; i<TOTAL; i++)
+	for(int i = 0; i < 9; i++)
 	{
-		int numval = vals[i];
-		if(numval < vals[i+1])
+		numvals = vals[i];
+		int j = i + 1;
+		if(numvals < vals[j])
 		{
-			numval= *min;
-		}
-		else
-		{
-			numval= *max;
+			*min=vals[i];
+			numvals=*min;
+			printf("%d\n", numvals);
 		}
 	}
 	return;
