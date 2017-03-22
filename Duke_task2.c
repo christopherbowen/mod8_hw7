@@ -28,8 +28,9 @@ int main(int argc, char *argv[])
 		value[i]= rand()%100;
 		printf("%d ", value[i]);
 	}
+	printf("\n");
 	MaxMin(numvals, value, &min, &max);
-	printf("\nThe maximum value is: %d\n", max);
+	printf("The maximum value is: %d\n", max);
 	printf("The minimum value is: %d\n", min);
 	return 0;
 }
@@ -38,16 +39,25 @@ int main(int argc, char *argv[])
 /* Function Defenitions */
 void MaxMin(int numvals, int vals[],int* min, int* max)
 {
-	for(int i = 0; i < 9; i++)
+	numvals=vals[0];
+	for(int i = 0; i < TOTAL; i++)
 	{
-		numvals = vals[i];
 		int j = i + 1;
-		if(numvals < vals[j])
+		if(vals[i] < vals[j] && vals[i] < numvals)
 		{
-			*min=vals[i];
-			numvals=*min;
-			printf("%d\n", numvals);
+			numvals=vals[i];
 		}
+	*min=numvals;
+	}
+	int dummy=vals[0];
+	for(int a = 0; a < TOTAL; a++)
+	{
+		int b = a + 1;
+		if(vals[a] > vals[b] && vals[a] > dummy)
+		{
+			dummy=vals[a];
+		}
+	*max=dummy;
 	}
 	return;
 }
